@@ -137,7 +137,7 @@ export default function Page() {
 <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6">
      {/* Header */}
 <header className="flex items-center justify-between mb-8">
-<Image src="/logo.png" alt="Logo" width={56} height={56} className="h-14 w-auto" />
+<Image src="/logo.png" alt="Logo" width={900} height={750} className="h-14 w-auto" />
 <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 via-blue-500 to-red-500 bg-clip-text text-transparent">
          Painel de Entregas 
 </h1>
