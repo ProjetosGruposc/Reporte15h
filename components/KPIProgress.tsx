@@ -36,7 +36,7 @@ interface Props {
 
 export function KPIProgress({ title, value, sub }: Props) {
 
-  const pct = Math.max(0, Math.min(100, value));
+  const pct = Math.max(0, Math.min(100, Number(value)));
 
   const barColor =
 
