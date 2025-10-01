@@ -12,8 +12,8 @@ const robotoMono = Roboto_Mono({
  subsets: ["latin"],
 });
 export const metadata: Metadata = {
- title: "Controle de Paletes",
- description: "Dashboard corporativo de entradas, saídas e saldo de paletes",
+ title: "Reporte das 15 H",
+ description: "Dashboard corporativo de acompanhamento das 15h",
 };
 export default function RootLayout({
  children,

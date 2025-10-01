@@ -1,62 +1,46 @@
 interface Props {
-
-  title: string;
-
-  value: number | string;
-
-  sub?: string;
-
-  color?: string; // ex: "text-green-400"
-
+ title: string;
+ value: string | number;
+ sub?: string;
+ meta?: number; // meta configurável (default 82)
 }
-
-export function KPI({ title, value, sub, color }: Props) {
-
-  return (
-<div className="rounded-xl bg-slate-800 border border-slate-700 p-4">
-<p className="text-xs text-slate-400">{title}</p>
-<p className={`text-2xl font-semibold ${color ?? ""}`}>{value}</p>
-
-      {sub && <p className="text-xs text-slate-400 mt-1">{sub}</p>}
+export function KPIProgress({ title, value, sub, meta = 82 }: Props) {
+ const pct = Math.max(0, Math.min(100, Number(value)));
+ const falta = 100 - pct;
+ return (
+<div className="bg-white/5 rounded-xl p-4 shadow text-center">
+<p className="text-xs uppercase text-gray-400">{title}</p>
+     {/* Valor principal */}
+<p className="text-3xl font-bold text-white mt-2">
+       {pct.toFixed(1)}%
+</p>
+     {/* Barra dupla */}
+<div className="relative w-full bg-gray-700 rounded-full h-4 mt-4">
+       {/* Entregue */}
+<div
+         className="absolute top-0 left-0 h-4 rounded-l-full bg-green-500"
+         style={{ width: `${pct}%` }}
+       />
+       {/* Falta */}
+<div
+         className="absolute top-0 left-[${pct}%] h-4 rounded-r-full bg-red-500"
+         style={{ width: `${falta}%`, left: `${pct}%` }}
+       />
+       {/* Linha da meta */}
+<div
+         className="absolute top-0 h-4 w-0.5 bg-blue-400"
+         style={{ left: `${meta}%` }}
+       />
 </div>
-
-  );
-
+     {/* Texto auxiliar */}
+<div className="flex justify-between text-xs mt-2 text-gray-300">
+<span className="text-green-400">Entregue {pct.toFixed(1)}%</span>
+<span className="text-red-400">Falta {falta.toFixed(1)}%</span>
+<span className="text-blue-400">Meta {meta}%</span>
+</div>
+     {sub && (
+<p className="text-xs text-gray-400 mt-1">{sub}</p>
+     )}
+</div>
+ );
 }
- 
-interface Props {
-
-  title: string;
-
-  value: string | number; // 0..100
-
-  sub?: string;
-
-}
-
-export function KPIProgress({ title, value, sub }: Props) {
-
-  const pct = Math.max(0, Math.min(100, Number(value)));
-
-  const barColor =
-
-    pct >= 82 ? "bg-green-500" : pct >= 70 ? "bg-yellow-500" : "bg-red-500";
-
-  return (
-<div className="rounded-xl bg-slate-800 border border-slate-700 p-4">
-<p className="text-xs text-slate-400">{title}</p>
-<div className="flex items-baseline gap-2">
-<p className="text-2xl font-semibold">{pct.toFixed(1)}%</p>
-
-        {sub && <p className="text-xs text-slate-400">{sub}</p>}
-</div>
-<div className="h-2 w-full bg-slate-700 rounded mt-2">
-<div className={`h-2 ${barColor} rounded`} style={{ width: `${pct}%` }} />
-</div>
-<p className="text-[10px] text-slate-400 mt-1">Meta: 82%</p>
-</div>
-
-  );
-
-}
- 
