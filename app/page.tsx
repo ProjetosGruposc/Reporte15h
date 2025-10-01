@@ -10,6 +10,7 @@ import TransportadoraSelect, { Option } from "../components/TransportadiraSelect
 import { RawRow, ManifestoConsolidado } from "@/types/report";
 import { consolidateByManifest } from "../utils/getuniqueMainfests";
 import { normalize } from "@/utils/status";
+import { color } from "chart.js/helpers";
 const META = 82; // %
 export default function Page() {
  const [rows, setRows] = useState<RawRow[]>([]);
@@ -173,11 +174,11 @@ export default function Page() {
            />
 <KPI title="Entregue" value={entregue} color="text-green-400" />
 <KPI title="Falta entregar" value={falta} color="text-red-400" />
-<KPIProgress
-             title="Percentual de Entregas"
+<KPIProgress 
+             title={<span style={{ color: "yellow"}}>Percentual de Entregas</span>}
              value={perc}
              sub={`Falta ${percFalta.toFixed(1)}% • Meta ${META}%`}
-           />
+            />
 </div>
          {/* Gráficos */}
 <div className="grid md:grid-cols-2 gap-6">
