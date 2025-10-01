@@ -28,7 +28,7 @@ interface Props {
 
   title: string;
 
-  value: number; // 0..100
+  value: string | number; // 0..100
 
   sub?: string;
 
